@@ -6,6 +6,8 @@ const hbs = require("hbs");
 var http = require("http");
 var cors = require("cors");
 
+//connecting to mongoLab test database
+mongoose.connect('mongodb://pranav:pranav1234@ds141766.mlab.com:41766/madeye');
 //Handle uncaught exceptions
 process.on("uncaughtException", function (error) {
     console.log(error.stack);
