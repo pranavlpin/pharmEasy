@@ -11,12 +11,6 @@ var patientSchema = new mongoose.Schema({
 	"address": String,
 	"age": Number,
 	"gender": String,
-	"prescription": [{
-		"medicine": [String],
-		"dose": [String],
-		"prescriptionDate": Date,
-		"notes": String,
-	}],
 	"others": {
 		"addedDate": {
 			type: Date,

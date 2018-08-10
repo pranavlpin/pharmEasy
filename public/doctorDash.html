@@ -146,7 +146,7 @@
                     doctorDetail: sessionStorage.getItem('doctorId')
                 },
                 success: function (response) {
-                    alert(JSON.stringify(response));
+                    alert(JSON.stringify(response.message));
                 },
                 error: function (response) {
                     alert(JSON.stringify(response));
