@@ -50,7 +50,7 @@
             $("#submit").click(function () {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:3000/patients/",
+                    url: "https://pharme.herokuapp.com/patients/",
                     dataType: 'json',
                     async: false,
                     headers: {
@@ -80,7 +80,7 @@
             var password = sessionStorage.getItem("password");
             $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/doctorPatientRequest/",
+                url: "https://pharme.herokuapp.com/doctorPatientRequest/",
                 dataType: 'json',
                 async: false,
                 headers: {
@@ -95,7 +95,7 @@
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost:3000/patientPrescriptions/",
+                            url: "https://pharme.herokuapp.com/patientPrescriptions/",
                             dataType: 'json',
                             async: false,
                             headers: {
@@ -135,7 +135,7 @@
             var password = sessionStorage.getItem("password");
             $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/requests/",
+                url: "https://pharme.herokuapp.com/requests/",
                 dataType: 'json',
                 async: false,
                 headers: {
