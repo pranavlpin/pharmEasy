@@ -120,19 +120,38 @@
 
                     } else {
                         document.getElementById("prescription").innerHTML =
-                            "<h5>Prescriptions</h5><br><p>Patient has not approved you to view his prescription</p>";
+                            "<h5>Prescriptions</h5><p>Patient has not approved you to view his prescription</p>" +
+                            "<br><b>Send new Request</b><br><button class='editBut' onClick=sendNewRequest(this) id=" +
+                            elem.id + ">Send Request</button>";
                     }
                 },
             })
 
-
-
-
-
-
-
-            //$("#loader").removeClass("loader");
             return false;
+        }
+
+        function sendNewRequest(elem) {
+            var username = sessionStorage.getItem("username");
+            var password = sessionStorage.getItem("password");
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/requests/",
+                dataType: 'json',
+                async: false,
+                headers: {
+                    "Authorization": "Basic " + btoa(username + ":" + password)
+                },
+                data: {
+                    patientDetail: elem.id,
+                    doctorDetail: sessionStorage.getItem('doctorId')
+                },
+                success: function (response) {
+                    alert(JSON.stringify(response));
+                },
+                error: function (response) {
+                    alert(JSON.stringify(response));
+                }
+            });
         }
     </script>
 </body>

@@ -58,6 +58,8 @@
                             patientDetail: patientId
                         },
                         success: function (response) {
+                            document.getElementById("display").innerHTML =
+                                "<h5>Pending Requests</h5>";
                             for (var i = 0; i < response.length; i++) {
                                 document.getElementById("display").innerHTML +=
                                     "<p>RequestID=" + response[i]['_id'] +

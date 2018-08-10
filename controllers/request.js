@@ -60,7 +60,8 @@ exports.patientRequests = function (req, res) {
         });
     } else {
         Request.find({
-            patientDetail: req.body.patientDetail
+            patientDetail: req.body.patientDetail,
+            requestApproved: false
         }).exec(function (err, result) {
             if (err) {
                 res.send(err);
