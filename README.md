@@ -1,6 +1,9 @@
-# pharmEasy
+# pharmEasy Assignment
+
 URL of the webapp:https://pharme.herokuapp.com
+
 GitHub Repository: https://github.com/pranavlpin/pharmEasy/
+
 
 ## Flow of the App:
 First page of the app (<url>/ or <url>/index.html) is a login form for all the users, i.e. patients, doctors and pharmacists. Here user will login will be taken to their respective pages. Login details are there in the home page only.
