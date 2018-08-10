@@ -1,17 +1,16 @@
 var mongoose = require('mongoose');
 
-var doctorSchema = new mongoose.Schema({
+var pharmacistSchema = new mongoose.Schema({
+	"userId": {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	"name": String,
 	"email": String,
 	"phone": String,
 	"address": String,
 	"age": Number,
 	"gender": String,
-	"storeDetails": {
-		"storeName": String,
-		"address": String,
-		//other Details
-	},
 	"others": {
 		"addedDate": {
 			type: Date,
@@ -22,4 +21,4 @@ var doctorSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('Doctor', doctorSchema);
+module.exports = mongoose.model('Pharmacist', pharmacistSchema);

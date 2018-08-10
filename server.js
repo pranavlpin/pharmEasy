@@ -2,6 +2,7 @@ var express = require("express");
 var mongoose = require('mongoose');
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
+var allRoutes = require("./routes/allRoutes");
 const hbs = require("hbs");
 var http = require("http");
 var cors = require("cors");
@@ -31,8 +32,8 @@ var port = process.env.PORT || 3000;
 //create express router
 var router = express.Router();
 app.get("/", function (req, res) {
-    //res.sendFile(__dirname + "/index.html");
-    res.send("Hello World");
+    res.sendFile(__dirname + "/index.html");
+    //res.send("Hello World");
 });
 //Logging each API request on console
 router.use(function (req, res, next) {
@@ -45,5 +46,10 @@ router.use(function (req, res, next) {
     )} \nHeader:${JSON.stringify(req.headers.authorization)}\n\n`;
     next();
 });
+
+//Register your routes with the API
+app.use("", router);
+app.use("", allRoutes);
+
 //Start listening
 app.listen(port, () => console.log('Server listening on port 3000!'))

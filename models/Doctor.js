@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
 var doctorSchema = new mongoose.Schema({
+	"userId": {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	"name": String,
 	"email": String,
 	"phone": String,
@@ -12,7 +16,6 @@ var doctorSchema = new mongoose.Schema({
 			type: Date,
 			default: Date.now
 		},
-		"addedBy": String,
 		"activeFlag": Boolean,
 	}
 });

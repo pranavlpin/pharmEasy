@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <div class="container">
+        <h3>Login Sreen</h3>
+        <br>
+        <br>
+        <div class="row">
+            <div class="input-field col s12 m4 l4">
+                <input placeholder="Username" id="username" type="text" class="validate">
+                <label for="username">Username</label>
+            </div>
+            <div class="input-field col s12 m4 l4">
+                <input placeholder="Password" id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+            <div class="col s12 m4 l4">
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="submit">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                //alert(document.getElementById("username").value);
+                var PHONE = document.getElementById("username").value;
+                var PASSWORD = document.getElementById("password").value;
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/login",
+                    dataType: 'json',
+                    async: false,
+                    headers: {
+                        "Authorization": "Basic " + btoa(PHONE + ":" + PASSWORD)
+                    },
+                    data: {
+                        username: PHONE
+                    },
+                    success: function (response) {
+                        if (response.access == 3) {
+                            sessionStorage.setItem('username', PHONE);
+                            sessionStorage.setItem('password', PASSWORD);
+                            sessionStorage.setItem('access', response.access);
+                            sessionStorage.setItem('patientId', response.data._id);
+                            sessionStorage.setItem('patientName', response.data.name);
+                            window.location = "patientDash.html";
+                        } else if (response.access == 4) {
+                            sessionStorage.setItem('username', PHONE);
+                            sessionStorage.setItem('password', PASSWORD);
+                            sessionStorage.setItem('access', response.access);
+                            sessionStorage.setItem('doctorId', response.data._id);
+                            sessionStorage.setItem('doctorName', response.data.name);
+                            window.location = "doctorDash.html";
+                        } else if (response.access == 5) {
+                            sessionStorage.setItem('username', PHONE);
+                            sessionStorage.setItem('password', PASSWORD);
+                            sessionStorage.setItem('access', response.access);
+                            sessionStorage.setItem('pharmacistId', response.data._id);
+                            sessionStorage.setItem('pharmacistName', response.data.name);
+                            window.location = "pharmaDash.html";
+                        } else {
+                            alert(JSON.stringify("Access Denied"));
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Invalid Login');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
