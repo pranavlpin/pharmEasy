@@ -61,10 +61,21 @@
                             document.getElementById("display").innerHTML =
                                 "<h5>Pending Requests</h5>";
                             for (var i = 0; i < response.length; i++) {
-                                document.getElementById("display").innerHTML +=
-                                    "<p>RequestID=" + response[i]['_id'] +
-                                    "</p><button class='editBut' onClick=approveRequest(this) id=" +
-                                    response[i]['_id'] + ">Approve Request</button>";
+                                 if (response[i]['pharmacistDetail'] == undefined) {
+                                    document.getElementById("display").innerHTML +=
+                                        "<p>RequestID=" + response[i]['_id'] +
+                                        ", Request from " + response[i]
+                                        ['doctorDetail']['name'] +
+                                        "</p><button class='editBut' onClick=approveRequest(this) id=" +
+                                        response[i]['_id'] + ">Approve Request</button>";
+                                } else {
+                                    document.getElementById("display").innerHTML +=
+                                        "<p>RequestID=" + response[i]['_id'] +
+                                        ", Request from " + response[i]
+                                        ['pharmacistDetail']['name'] +
+                                        "</p><button class='editBut' onClick=approveRequest(this) id=" +
+                                        response[i]['_id'] + ">Approve Request</button>";
+                                }
                             }
                         },
                     });
