@@ -62,7 +62,7 @@ exports.patientRequests = function (req, res) {
         Request.find({
             patientDetail: req.body.patientDetail,
             requestApproved: false
-        }).exec(function (err, result) {
+        }).populate('pharmacistDetail', 'name').populate('doctorDetail', 'name').exec(function (err, result) {
             if (err) {
                 res.send(err);
             } else {
